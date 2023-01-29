@@ -1,0 +1,40 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+xserver情報
+https://secure.xserver.ne.jp/xapanel/login/xserver/
+signkingdom888@gmail.com
+gs888888
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+host:		sv14216.xserver.jp
+IP:		162.43.121.17
+home dir:	/home/xs469962
+port: 		10022
+pass phrase: gs888888
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+xs469962_db
+
+DB
+ID: 	xs469962_admin
+PW: 	admin123
+DB: 	xs469962_db
+Host: 	localhost
+phpmyadmin: https://phpmyadmin-sv14216.xserver.jp/
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$ cd
+$ mkdir bin
+$ ln -s /usr/bin/php7.4 $HOME/bin/php
+$ ls -la $HOME/bin/cd
+
+mv /home/xs469962/xs469962.xsrv.jp/public_html /home/xs469962/xs469962.xsrv.jp/_public_html
+ln -s /home/xs469962/Laravel-metalplate/public /home/xs469962/xs469962.xsrv.jp/public_html
+
+ln -s /home/xs469962/test/amazon/public /home/xs469962/xs469962.xsrv.jp/public_html
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+'https://graph.keepa.com/pricehistory.png?asin=' . $product['asin'] . '&domain=co.jp&salesrank=1'
