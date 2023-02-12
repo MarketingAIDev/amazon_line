@@ -196,6 +196,20 @@
 			// 	return;
 			// }
 
+			clearInterval(scanInterval);
+			await $.ajax({
+				url: "{{ route('stop') }}",
+				type: "get",
+				success: function () {
+					$('#round1').html(0);
+					$('#progress-num1').html(0);
+					$('#percent-num1').html('0%');
+					$('#progress1').attr('aria-valuenow', );
+					$('#progress1').css('width', '0%');
+					$('#total-num1').html(0);
+				}
+			});
+
 			if (csvFile === undefined) {
 				toastr.error('CSVファイルを選択してください。');
 				return;
@@ -241,8 +255,7 @@
 			};
 
 			$.ajax({
-				url: "http://localhost:32768/api/v1/amazon/getInfo",
-				// url: "http://xs469962.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
+				url: "http://xs469962.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
 				type: "post",
 				data: {
 					asin: JSON.stringify(postData)
@@ -257,13 +270,12 @@
 				type: "get",
 				success: function () {
 					toastr.info('サーバーが停止されました。');
-
-					$('#round1').html(0);
 					$('#round1').html(0);
 					$('#progress-num1').html(0);
 					$('#percent-num1').html('0%');
 					$('#progress1').attr('aria-valuenow', );
 					$('#progress1').css('width', '0%');
+					$('#total-num1').html(0);
 				}
 			});
 		};
@@ -277,7 +289,7 @@
 					toastr.info('サーバーが起動されました。');
 				}
 			});
-		}
+		};
 
 		var newCsvResult, csvFile;
 		// select csv file and convert its content into an array of ASIN code

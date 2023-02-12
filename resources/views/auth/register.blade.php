@@ -22,6 +22,7 @@
 					@csrf
 					<div class="header">
 						<img class="logo" src="assets/images/logo.svg" alt="">
+						<img class="logo" src="assets/images/a.png" alt="">
 						<h5>会員登録</h5>
 					</div>
 					<div class="body">

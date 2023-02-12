@@ -61,7 +61,8 @@
     <aside id="leftsidebar" class="sidebar">
         <div class="navbar-brand">
             <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-            <a href="{{ route('list_product') }}"><img src="assets/images/logo.svg" width="25" alt="Amazon"><span
+            <!-- <a href="{{ route('list_product') }}"><img src="assets/images/logo.svg" width="25" alt="Amazon"><span -->
+            <a href="{{ route('list_product') }}"><img src="assets/images/a.png" width="25" alt="Amazon"><span
                     class="m-l-10">AMAZON</span></a>
         </div>
 

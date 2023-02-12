@@ -18,7 +18,8 @@
 				<form method="POST" action="{{ route('login') }}" role="form" class="card auth_form">
 					@csrf
 					<div class="header">
-						<img class="logo" src="assets/images/logo.svg" alt="">
+						<!-- <img class="logo" src="assets/images/logo.svg" alt=""> -->
+						<img class="logo" src="assets/images/a.png" alt="">
 						<h5>ログイン</h5>
 					</div>
 					<div class="body">

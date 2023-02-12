@@ -13,7 +13,11 @@ class ProductController extends Controller
 {
 	public function register_products(Request $request)
 	{
-		$user = User::find(Auth::user()->id);
+		$user = User::find(Auth::id());
+		$user->round = 0;
+		$user->trk_num = 0;
+		$user->stop = 1;
+		$user->save();
 		Product::where('user_id', $user->id)->delete();
 
 		$req = json_decode($request['asin']);
@@ -30,6 +34,10 @@ class ProductController extends Controller
 			$product->url = 'https://www.amazon.co.jp/dp/' . $c->asin .'?tag=gnem03010a-22&linkCode=ogi&th=1&psc=1';
 			$product->save();
 		}
+
+		$user = User::find(Auth::id());
+		$user->stop = 0;
+		$user->save();
 	}
 
 	public function list_product()
@@ -44,7 +52,13 @@ class ProductController extends Controller
 		$user = Auth::user();
 		$products = Product::where('user_id', $user->id);
 		$products->delete();
-		return;
+
+		$user = User::find(Auth::id());
+		$user->round = 0;
+		$user->trk_num = 0;
+		$user->stop = 1;
+		$user->save();
+		return redirect()->route('register_product');
 	}
 	
 	public function remove_product(Request $request)
