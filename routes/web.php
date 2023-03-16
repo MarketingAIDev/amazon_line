@@ -40,7 +40,6 @@ Route::group(['middleware' => ['auth']], function() {
     
     // Product Routes
     Route::view('register_product', 'mypage.register_product')->name('register_product');
-    Route::post('register_products', [ProductController::class, 'register_products'])->name('register_products');
     Route::get('list_product', [ProductController::class, 'list_product'])->name('list_product');
     Route::post('delete_product', [ProductController::class, 'delete_product'])->name('delete_product');
     Route::post('remove_product', [ProductController::class, 'remove_product'])->name('remove_product');

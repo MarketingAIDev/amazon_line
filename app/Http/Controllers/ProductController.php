@@ -76,21 +76,26 @@ class ProductController extends Controller
 	public function csv_down(Request $request)
 	{
 		$data = "";
-		$filename = "";
 		$user = Auth::user();
 
-		$data .= "ASIN, 価格, 下落%, Keepa URL, 再通知間隔\n";
 		$products = Product::where('user_id', $user->id)->get();
 		foreach ($products as $p) {
-			$data .= $p['asin'].",".$p['price'].",".$p['pro'].", https://keepa.com/#!product/5-".$p['asin'].",".$user['interval']."\n";
+			$data .= $p['asin'].",".($p['price'] == 0 ? $p['reg_price'] : $p['price']).",".$p['pro'].", https://keepa.com/#!product/5-".$p['asin'].",".$p['inter']."\n";
 		}
 		
-		$filename = "監視リスト";
-		
+		return $data;
+		$filename = $user->file_name ?? "価格監視.csv";
+
 		header('Content-Type: application/csv');
-		header('Content-Disposition: attachment; filename="'.$filename."_".date("Y-m-d").'.csv"');
+		header('Encoding: utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename);
 		echo $data;
 		exit();
+
+		// $file = fopen($filename, "w+");
+		// fwrite($file, $data);
+		// fclose($file);
+		// return;
 	}
 
 	public function stop()

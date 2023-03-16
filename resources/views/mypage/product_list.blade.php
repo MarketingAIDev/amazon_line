@@ -14,12 +14,18 @@
 					<li class="breadcrumb-item"><a href="/"><i class="zmdi zmdi-home"></i> Amazon</a></li>
 					<li class="breadcrumb-item active">商品一覧</li>
 				</ul>
-				<button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
+				<button class="btn btn-primary btn-icon mobile_menu" type="button"><i
+						class="zmdi zmdi-sort-amount-desc"></i></button>
 			</div>
 			<div class="col-lg-5 col-md-6 col-sm-12">
-				<a style="color: white;" href="{{ route('csv_down') }}" class="btn btn-primary btn-icon float-right"><i class="zmdi zmdi-download"></i></a>
-				<button class="btn btn-danger btn-icon float-right" type="button" onclick="deleteProduct('{{$user->id}}')"><i class="zmdi zmdi-delete"></i></button>
-				<button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+				<!-- <a style="color: white;" href="{{ route('csv_down') }}"
+					class="btn btn-primary btn-icon float-right"><i class="zmdi zmdi-download"></i></a> -->
+				<button class="btn btn-danger btn-icon float-right" type="button"
+					onclick="deleteProduct('{{ $user->id }}')"><i class="zmdi zmdi-delete"></i></button>
+				<button class="btn btn-primary btn-icon float-right" type="button" id="save-file"><i
+						class="zmdi zmdi-download"></i></button>
+				<!-- <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i
+						class="zmdi zmdi-arrow-right"></i></button> -->
 			</div>
 		</div>
 	</div>
@@ -38,31 +44,49 @@
 										<th colspan="1" rowspan="1" style="text-align: center;">ASIN</th>
 										<th colspan="1" rowspan="1" style="text-align: right;">登録価格</th>
 										<th colspan="1" rowspan="1" style="text-align: right;">現在価格</th>
-										<th colspan="1" rowspan="1" style="text-align: center;">下落％<br/>（目標価格）</th>
+										<th colspan="1" rowspan="1" style="text-align: center;">下落％<br />（目標価格）</th>
 										<!-- <th colspan="1" rowspan="1" data-breakpoints="md sm xs">再通知間隔</th> -->
-										<th colspan="1" rowspan="1" data-breakpoints="md sm xs" style="text-align: center;">Keepa URL</th>
+										<th colspan="1" rowspan="1" data-breakpoints="md sm xs"
+											style="text-align: center;">Keepa URL</th>
 										<th colspan="1" rowspan="1" style="text-align: center;">操作</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($products as $product)
+									@foreach($products as $product)
 										<tr data-id="{{ $product->id }}">
-											<td colspan="1" rowspan="1" style="text-align: center;">{{ $loop->iteration + ($products->currentPage() - 1) * 10 }}</td>
 											<td colspan="1" rowspan="1" style="text-align: center;">
-												<a href="{{ $product->url }}" target="_blank"><img src="{{ $product->image }}" title="{{ $product->url }}" alt="image" /></a>
+												{{ $loop->iteration + ($products->currentPage() - 1) * 10 }}
 											</td>
-											<td colspan="1" rowspan="1" style="text-align: center;">{{ $product->asin }}</td>
-											<td colspan="1" rowspan="1" style="color: #e47297; font-size: 16px; text-align: right;">¥{{ number_format($product->reg_price) }}</td>
-											<td colspan="1" rowspan="1" style="color: #5cc5cd; font-size: 16px; text-align: right;">¥{{ number_format($product->price) }}</td>
-											<td colspan="1" rowspan="1" style="text-align: center;">{{ $product->pro }}%<br/>(¥{{ number_format($product->tar_price) }})</td>
+											<td colspan="1" rowspan="1" style="text-align: center;">
+												<a href="{{ $product->url }}" target="_blank"><img
+														src="{{ $product->image }}" title="{{ $product->url }}"
+														alt="image" /></a>
+											</td>
+											<td colspan="1" rowspan="1" style="text-align: center;">
+												{{ $product->asin }}</td>
+											<td colspan="1" rowspan="1"
+												style="color: #e47297; font-size: 16px; text-align: right;">
+												¥{{ number_format($product->reg_price) }}</td>
+											<td colspan="1" rowspan="1"
+												style="color: #5cc5cd; font-size: 16px; text-align: right;">
+												¥{{ number_format($product->price) }}</td>
+											<td colspan="1" rowspan="1" style="text-align: center;">
+												{{ $product->pro }}%<br />(¥{{ number_format($product->tar_price) }})
+											</td>
 											<!-- <td colspan="1" rowspan="1">{{ $user->interval }}</td> -->
 											<td colspan="1" rowspan="1" style="text-align: center;">
-												<a href="{{ 'https://keepa.com/#!product/5-' . $product->asin }}" target="_blank"><img style="width: 200px;" title="{{ 'https://keepa.com/#!product/5-' . $product->asin }}" src={{ 'https://graph.keepa.com/pricehistory.png?asin=' . $product->asin . '&domain=co.jp&salesrank=1'}} /></a>
+												<a href="{{ 'https://keepa.com/#!product/5-' . $product->asin }}"
+													target="_blank"><img style="width: 200px;"
+														title="{{ 'https://keepa.com/#!product/5-' . $product->asin }}"
+														src={{ 'https://graph.keepa.com/pricehistory.png?asin=' . $product->asin . '&domain=co.jp&salesrank=1' }} /></a>
 											</td>
 											<!-- <td colspan="1" rowspan="1">
 												<a href="{{ 'https://keepa.com/#!product/5-' . $product->asin }}" target="_blank">{{ 'https://keepa.com/#!product/5-' . $product->asin }}</a>
 											</td> -->
-											<td colspan="1" rowspan="1" style="text-align: center;"><button class="btn btn-danger btn-icon" type="button" onclick="removeProduct('{{$product->id}}')"><i class="zmdi zmdi-delete"></i></button></td>
+											<td colspan="1" rowspan="1" style="text-align: center;"><button
+													class="btn btn-danger btn-icon" type="button"
+													onclick="removeProduct('{{ $product->id }}')"><i
+														class="zmdi zmdi-delete"></i></button></td>
 										</tr>
 									@endforeach
 								</tbody>
@@ -80,10 +104,10 @@
 
 @push('scripts')
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function () {
 			setInterval(() => {
 				location.href = '{{ route("list_product") }}';
-			}, 300000);	
+			}, 300000);
 		});
 
 		function deleteProduct(id) {
@@ -128,5 +152,29 @@
 				}
 			})
 		}
+
+		$('#save-file').on('click', function(e) {
+			$.ajax({
+				url: "{{route('csv_down')}}",
+				success: async function(res) {
+					
+					// create a new handle
+					const newHandle = await window.showSaveFilePicker();
+					console.log(newHandle);
+					
+					// create a FileSystemWritableFileStream to write to
+					const writableStream = await newHandle.createWritable();
+
+					var csvContent = "ASIN,価格,下落%,Keepa URL,再通知間隔\n" + res;
+		
+					// write our file
+					await writableStream.write(csvContent, 'Shift-JIS');
+		
+					// close the file and write the contents to disk.
+					await writableStream.close();
+				}
+			});
+		});
+
 	</script>
 @endpush

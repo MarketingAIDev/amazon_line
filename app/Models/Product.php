@@ -17,10 +17,13 @@ class Product extends Model
         'price',
         'pro',
         'tar_price',
+        'changed_time',
         'in_stock',
+        'url',
+        'inter',
         'user_id',
         'is_notified',
-        'url',
+        'notified_time',
         'error',
     ];
 }

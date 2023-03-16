@@ -30,6 +30,7 @@ class User extends Authenticatable
         'family_name',
         'cell_phone',
         'interval',
+        'changed_time',
         'five',
         'ten',
         'twenty',

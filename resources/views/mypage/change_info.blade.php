@@ -33,11 +33,11 @@
 						<div class="body">
 							<div class="row clearfix">
 								<div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
-									<label for="email_address_2">アックスキー:</label>
+									<label for="email_address_2">アクセスキー:</label>
 								</div>
 								<div class="col-lg-10 col-md-10 col-sm-8">
 									<div class="form-group">
-										<input type="text" id="access-key" name="access-key" class="form-control" placeholder="アックスキー" value="{{ $user->access_key }}" />
+										<input type="text" id="access-key" name="access-key" class="form-control" placeholder="アクセスキー" value="{{ $user->access_key }}" />
 									</div>
 								</div>
 							</div>

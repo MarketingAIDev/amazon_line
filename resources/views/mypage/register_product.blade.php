@@ -255,7 +255,7 @@
 			};
 
 			$.ajax({
-				url: "http://xs469962.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
+				url: "https://xs469962.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
 				type: "post",
 				data: {
 					asin: JSON.stringify(postData)
@@ -297,6 +297,8 @@
 			clearInterval(scanInterval);
 
 			csvFile = e.target.files[0];
+			localStorage.setItem('csv', csvFile);
+			
 			newCsvResult = [];
 
 			$('#progress-num').html('0');
@@ -322,6 +324,7 @@
 						productInfo.asin = code[0];
 						productInfo.price = code[1];
 						productInfo.pro = code[2];
+						productInfo.interval = code[4];
 						newCsvResult.push(productInfo);
 					}
 					// if (newCsvResult[0].asin == 'ASIN' || newCsvResult[0].asin == 'Asin' || newCsvResult[0].asin == 'asin') { newCsvResult.shift(); }

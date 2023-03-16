@@ -12,5 +12,7 @@ class Error extends Model
 
     protected $fillable = [
         'code',
+        'link',
+        'recipient',
     ];
 }
