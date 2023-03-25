@@ -103,6 +103,7 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
 		$(document).ready(function () {
 			setInterval(() => {
@@ -157,18 +158,21 @@
 			$.ajax({
 				url: "{{route('csv_down')}}",
 				success: async function(res) {
-					
+					// console.log(res);
+					// var BOM = "\uFEFF";
+					// var csvData = BOM + res;
+					// var blob = new Blob([csvData], { type: "text/csv;charset=utf-8" });
+					// console.log(blob);
+					// saveAs(blob, "myCsv.csv");
+
 					// create a new handle
 					const newHandle = await window.showSaveFilePicker();
-					console.log(newHandle);
 					
 					// create a FileSystemWritableFileStream to write to
 					const writableStream = await newHandle.createWritable();
 
-					var csvContent = "ASIN,価格,下落%,Keepa URL,再通知間隔\n" + res;
-		
 					// write our file
-					await writableStream.write(csvContent, 'Shift-JIS');
+					await writableStream.write("\uFEFF" + res);
 		
 					// close the file and write the contents to disk.
 					await writableStream.close();

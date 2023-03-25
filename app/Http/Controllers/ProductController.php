@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Error;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportProduct;
 
 class ProductController extends Controller
 {
@@ -73,17 +75,23 @@ class ProductController extends Controller
 		return $user;
 	}
 
+	public function csv_download(Request $request)
+	{
+		return Excel::download(new ExportProduct, 'products.xlsx');
+	}
+	
 	public function csv_down(Request $request)
 	{
-		$data = "";
-		$user = Auth::user();
+		$data = "ASIN,価格,下落%,Keepa URL,再通知間隔\n";
 
+		$user = Auth::user();
 		$products = Product::where('user_id', $user->id)->get();
 		foreach ($products as $p) {
 			$data .= $p['asin'].",".($p['price'] == 0 ? $p['reg_price'] : $p['price']).",".$p['pro'].", https://keepa.com/#!product/5-".$p['asin'].",".$p['inter']."\n";
 		}
-		
-		return $data;
+		echo $data;
+		exit();
+
 		$filename = $user->file_name ?? "価格監視.csv";
 
 		header('Content-Type: application/csv');
