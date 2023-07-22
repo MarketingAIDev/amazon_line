@@ -100,7 +100,7 @@
                     </li>
 
                     <li <?php if(strpos(url()->current(), "notify_page")) echo 'class="active open"';?>>
-                        <!-- <a href="{{ route('notify_page') }}"><i class="zmdi zmdi-receipt"></i><span>LINEログページ</span></a> -->
+                        <a href="{{ route('notify_page') }}"><i class="zmdi zmdi-receipt"></i><span>LINEログページ</span></a>
                     </li>
                 @endif
 

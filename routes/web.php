@@ -45,7 +45,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('remove_product', [ProductController::class, 'remove_product'])->name('remove_product');
     Route::get('scan', [ProductController::class, 'scan'])->name('scan');
     Route::get('csv_down', [ProductController::class, 'csv_down'])->name('csv_down');
-    Route::get('csv_download', [ProductController::class, 'csv_download'])->name('csv_download');
     Route::get('stop', [ProductController::class, 'stop'])->name('stop');
     Route::get('restart', [ProductController::class, 'restart'])->name('restart');
     Route::view('notify_page',  'mypage.notify_page')->name('notify_page');

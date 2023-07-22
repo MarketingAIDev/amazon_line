@@ -255,7 +255,7 @@
 			};
 
 			$.ajax({
-				url: "https://xs469962.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
+				url: "https://xs206760.xsrv.jp/fmproxy/api/v1/amazon/getInfo",
 				type: "post",
 				data: {
 					asin: JSON.stringify(postData)
@@ -291,7 +291,7 @@
 			});
 		};
 
-		var newCsvResult, csvFile, csvL;
+		var newCsvResult, csvFile;
 		// select csv file and convert its content into an array of ASIN code
 		$('body').on('change', '#csv', function(e) {
 			clearInterval(scanInterval);
@@ -317,8 +317,6 @@
 				reader.onload = function (e) {
 					$('#count').css('visibility', 'visible');
 					csvResult = e.target.result.split(/\n/);
-					csvL = csvResult[0];
-					console.log(csvL);
 
 					for (let i = 1, len = csvResult.length - 1; i < len; i++) {
 						let productInfo = {};
@@ -331,7 +329,6 @@
 					}
 					// if (newCsvResult[0].asin == 'ASIN' || newCsvResult[0].asin == 'Asin' || newCsvResult[0].asin == 'asin') { newCsvResult.shift(); }
 
-					console.log(newCsvResult);
 					$('#total-num').html(newCsvResult.length);
 				}
 				reader.readAsText(csvFile);

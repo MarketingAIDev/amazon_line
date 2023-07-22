@@ -41,7 +41,7 @@
 									@foreach ($errors as $e)
 										<tr data-id="{{ $e->id }}">
 											<td colspan="1" rowspan="1" style="text-align: center;">{{ $loop->iteration + ($errors->currentPage() - 1) * 10 }}</td>
-											<td colspan="1" rowspan="1" style="text-align: center;">{{ $e->created_at}}</td>
+											<td colspan="1" rowspan="1" style="text-align: center;"><?php echo date("Y-m-d H:i:s", strtotime('+9 hours', strtotime($e->created_at))) ?></td>
 											<td colspan="1" rowspan="1" style="text-align: center;">
 												<a href="{{ $e->link }}" target="_blank">{{ $e->code }}</a>
 											</td>
